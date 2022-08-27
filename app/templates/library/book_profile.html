@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}
+    {{super()}}
+    {{book.title}}
+{% endblock title%}
+
+{% block page_content %}
+<div class = "page-header">
+	<h3 class = "text-info">{{book.title}}</h3>
+</div>
+<div>
+	<blockquote class = "blockquote">
+	
+		{% if book.image %}
+        	
+		<img style = "width : 100%; height : auto;" class = "img-rounded" src = "{{url_for('static', filename = 'library/' + book.image)}}">
+        
+		{% else %}
+
+        	<img style = "width : 100%; height : auto;" class = "img-rounded" src = "{{url_for('static', filename = 'library/default_book.jpeg')}}">
+
+        	{% endif %}
+
+		<p style = "padding-top : 2%;">
+		<a class = "btn btn-primary" href = "{{url_for('library.update_book_cover', book_id = book.book_id)}}">
+			Update Book Cover
+		</a>
+		</p>
+		<h3 class = "text-secondary">Authors</h3>
+
+		{% for author in authors %}
+		<p>
+		<a href = "{{url_for('library.book_author_profile', author_id = author.author_id)}}">
+		{{author.first_name}} {{author.middle_name}} {{author.last_name}}
+		</a>
+		</p>
+		{% endfor %}
+
+		<p>
+		<a href = "{{url_for('library.assign_author', book_id = book.book_id)}}" class = "btn btn-primary">
+			Add Author
+		</a>
+		</p>
+
+	</blockquote>
+</div>
+{% endblock page_content %}

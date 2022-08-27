@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}
+    {{super()}}
+    update KCSE Results
+{% endblock title%}
+
+{% block page_content %}
+<div class="page-header">
+	<h2>Update records shown on homepage</h2>
+</div>
+<div class = "container">
+	<table class = "table table-responsive table-hover table-striped">
+		<caption><h3>Select desired year from the following years</h3></caption>
+		<thead class = "thead-dark">
+			<th>Examination Year</th>
+		</thead>
+		<tbody>
+			{% for exam in exams %}
+			<tr>
+				<td>
+					<a href = "{{url_for('academics.homepage')}}">
+						{{exam.year}}
+					</a>
+				</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table
+</div>
+{% endblock page_content %}

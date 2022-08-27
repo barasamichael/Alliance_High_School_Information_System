@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}
+    {{super()}}
+    list of classes
+{% endblock title%}
+
+{% block page_content %}
+<div class="page-header">
+	<h1>list of classes</h1>
+</div>
+<div class = "container">
+	<table class = "table table-hover table-responsive table-striped">
+		<thead class = "thead-dark">
+			<tr>
+				<th>Class ID</th>
+				<th>Class Title</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for _class in classes%}
+			<tr>
+				<td>{{_class.class_id}}</td>
+				<td>{{_class.title}}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	<p>
+        <a class="btn btn-primary" href="{{url_for('students.register_student')}}">
+                Register New Student
+        </a>
+	<a style = "margin-left:50%;"class="btn btn-primary" href="{{url_for('students.register_class')}}">
+		Register New Class
+	</a>
+        </p>
+</div>
+{% endblock page_content %}

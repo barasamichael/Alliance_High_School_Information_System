@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}
+    {{super()}}
+    register department
+{% endblock title%}
+
+{% block page_content %}
+<div class="page-header">
+        <h1>register department</h1>
+</div>
+<div class = "container">
+        {{ wtf.quick_form(form) }}
+	<hr>
+	<p>
+	Click here to 
+	<a class="btn btn-primary" href="{{url_for('departments.view_departments')}}">
+		View Departments
+	</a>
+	</p>
+</div>
+{% endblock page_content %}

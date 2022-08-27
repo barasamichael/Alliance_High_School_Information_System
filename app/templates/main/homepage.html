@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% block title %}
+    {{super()}}
+    homepage
+{% endblock title%}
+
+{% block page_content %}
+<div class = "container">
+	<img src = "{{url_for('static', filename = 'prefects_homeimage.jpeg')}}" class = "img-rounded" style = "width : 100%; height : auto;">
+</div>
+
+
+<div class = "container">
+	<hr>
+	<h3 class = "text-secondary">Welcome Statement for Students</h3>
+	<p>
+	Welcome to your school of choice, the Alliance High School, the school we love
+	the most. It is with sincere gratitude we congratulate you on your hard work, 
+	prayer and determination in your Kenya Certificate of Secondary Education (KCPE) 
+	examination. We warmly welcome you to the best school in Africa that you worked 
+	hard and smart for. Have a fruitful stay at Alliance High School for your 
+	secondary academic journey.
+	</p>
+	<h3>
+		<a href = "">Location Details</a>
+	</h3>
+	<table class = "table table-responsive table-hover table-striped">
+		<thead class = "theaddark">
+			<tr><th>level</th><th>identity</th></tr>
+		</thead>
+		<tbody>
+			<tr><td>Country</td><td>Kenya</td></tr>
+			<tr><td>County</td><td>Kiambu</td></tr>
+			<tr><td>Sub County</td><td>Kikuyu</td></tr>
+			<tr><td>Constituency</td><td>Kiambu West</td></tr>
+			<tr><td>Location</td><td>Karuri</td></tr>
+			<tr><td>Sub Location</td><td></td></tr>
+			<tr><td>Village</td><td></td></tr>
+		</tbody>
+	</table>
+
+	<hr>
+
+	<h3 class = "text-secondary">School Motto</h3>
+	<p>Strong to Serve</p>
+
+	<hr>
+
+	<h3 class = "text-secondary">Mission Statement</h3>
+	</p>
+	To promote holistic learning for all the deserving students that will have been selected country wide on the basis over academic ability and character, and become the leading school in Kenya, Africa and beyond, in the provision of quality education.
+	</p>
+
+	<hr>
+
+	<h3 class = "text-secondary">Vision Statement</h3>
+	<p>
+	To graduate students who will be strong in mind, body and character, who will serve their fellows faithfully in Kenya, Africa and beyond.
+	</p>
+
+	<hr>
+	<h3 class = "text-secondary">The School Anthem</h3>
+	<p>Lord while for all mankind we pray,</p>
+	<p>of every clime and coast,</p>
+	<p>Oh, hear us for our native school</p>
+	<p>(The school we love the most) x3</p>
+
+	<hr>
+	<h3 class = "text-secondary">The School Prayer</h3>
+	<p>
+	Have in thy keeping, O Lord our God this school that its work may be thorough, 
+	and its life joyful, that from it may go out strong in body, mind and character, 
+	men who in thy name and power shall serve their fellows faithfully through Jesus 
+	Christ our Lord.
+	</p>
+
+	<p>Amen!</p>
+
+	<hr>
+	<h3 class = "text-secondary">Admission</h3>
+	<p>Every year, hundreds of thousands of primary school students select to join Alliance High school as their first choice. However, only 300-400 students are selected based on academic merit and quota as per the education policy. Academic merit is based on performance of the K.C.P.E exams. Its quota system sees to it that the school admits boys from every county in the country though with bias to students from public schools as the current education policy requires.
+Students are admitted on a need-blind basis. At any given time, there are needy students whose tuition and boarding fees are paid by parties other than their parents or guardians. This is thanks to the school’s strong alumni network (the Old Boys Club) as well as the large number of friends the school has around the world.
+	</p>
+</div>
+{% endblock page_content %}

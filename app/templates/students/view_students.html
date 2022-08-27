@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}
+    {{super()}}
+    view students
+{% endblock title%}
+
+{% block page_content %}
+<div class="page-header">
+	<h1>list of students</h1>
+</div>
+<div class = "container">
+	<table class = "table table-hover table-responsive table-striped">
+		<thead class = "thead-dark">
+			<tr>
+				<th>Admission Number</th>
+				<th>Names</th>
+				<th>Gender</th>
+				<th>Date Of Birth</th>
+				<th>House</th>
+				<th>Class</th>
+				<th>Email Address</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for student in students %}
+			<tr>
+				<td>{{student.admission_no}}</td>
+				<td><a href = "{{url_for('students.student_profile', admission_no = student.admission_no)}}">
+					{{student.first_name}} {{student.middle_name}} {{student.last_name}}
+				</a></td>
+				<td>{{student.gender}}</td>
+				<td>{{moment(student.date_of_birth).format('LL')}}</td>
+				<td>{{student.house_title}}</td>
+				<td>{{student.class}}</td>
+				<td>{{student.email_address}}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	<div class = "pagination">
+		{{macros.pagination_widget(pagination, 'students.view_students')}}
+	</div>
+	<p>
+        <a class="btn btn-primary" href="{{url_for('students.register_student')}}">
+                Register New Student
+        </a>
+	<a style = "margin-left:50%;"class="btn btn-primary" href="{{url_for('students.register_class')}}">
+		Register New Class
+	</a>
+        </p>
+</div>
+{% endblock page_content %}

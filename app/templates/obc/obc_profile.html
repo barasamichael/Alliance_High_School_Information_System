@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% block title %}
+    {{super()}}
+    {{user.first_name}} {{user.middle_name}} {{user.last_name}}
+{% endblock title%}
+
+{% block page_content %}
+<div class="page-header">
+	<h2>
+		{{user.first_name|title}} {{user.middle_name|title}} {{user.last_name|title}}
+	</h2>
+
+	{% if user.associated_image  %}
+
+	<img class="img-rounded profile-thumbnail" size = '256' src = "{{url_for('static', filename = 'obc/profiles/' + user.associated_image)}}">
+
+	{% else %}
+
+	<img class="img-rounded profile-thumbnail" size = '256' src = "{{url_for('static', filename = 'profiles/male-avatar.png')}}">
+
+	{% endif %}
+
+	<hr>
+	<p>
+        <a class="btn btn-primary" href="{{url_for('obc.update_obc_profile_photo', obc_id = user.obc_id)}}">
+		Update Profile Photo
+	</a>
+        </p>
+	<hr>
+	<blockquote>
+	<p>
+	<h3 class = "text-info">Personal Details</h3>
+	<ul class = "list-unstyled">
+		<li>
+			<b>name : </b>{{user.first_name|title}} {{user.middle_name|title}} {{user.last_name|title}}
+		</li>
+		<li><b>admission number : </b>{{user.adm_no}}</li>
+		<li><b>gender : </b>{{user.gender}}</li>
+		<li><b>class of : </b>{{user.year}}</li>
+		<li><b>house : </b>{{user.house_title}}</li>
+		<li><b>date of birth : </b>{{moment(user.date_of_birth).format('LL')}}</li>
+		<li><b>profession : </b>{{user.profession}}</li>
+		<li><b>residential address : </b>{{user.residential_address}}</li>
+		<li><b>phone number : </b>{{user.phone_no}}</li>
+		<li><b>email address : </b>{{user.email_address}}</li>
+
+		{% if user.status != 'member' %}
+		<li><b>status : </b> OBC {{user.status}}
+		{% endif %}
+
+	</ul>
+	</p>
+
+	<p>
+        <a class="btn btn-primary" href="{{url_for('obc.update_obc_profile', obc_id = user.obc_id)}}">
+		Update Profile
+	</a>
+        </p>
+	</blockquote>
+
+	<p>
+        <a class="btn btn-primary" href="{{url_for('obc.register_obc_achievement', obc_id = user.obc_id)}}">
+		Add Achievement
+	</a>
+        </p>
+	<table class = "table table-striped table-responsive table-hover">
+		<caption><h4>Achievements</h4</caption>
+		<thead class = "thead-dark">
+			<tr>
+				<th>year achieved</th>
+				<th>description</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for achievement in achievements %}
+			<tr>
+				<td>{{achievement.year}}</td>
+				<td>{{achievement.description}}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
+{% endblock page_content %}

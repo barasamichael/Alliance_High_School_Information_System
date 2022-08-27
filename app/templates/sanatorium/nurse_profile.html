@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}
+    {{super()}}
+    nurse home page
+{% endblock title%}
+
+{% block page_content %}
+<div class="page-header">
+	<h3>
+		{{nurse.first_name}} {{nurse.middle_name}} {{nurse.last_name}}
+	</h3>
+
+	{% if nurse.gender == 'Female' %}
+
+            <img src = "{{url_for('static', filename = 'profiles/female-avatar.png')}}" class = "img-rounded profile-thumbnail">
+
+        {% else %}
+
+            <img class="img-rounded profile-thumbnail" size = '256' src = "{{url_for('static', filename = 'profiles/male-avatar.png')}}">
+
+        {% endif %}
+
+	<blockquote class = "blockquote" style = "margin-top:6%;">
+		<p>
+		<ul class = 'list-unstyled'>
+
+			<li>Names : <b>{{nurse.first_name}} {{nurse.middle_name}} {{nurse.last_name}}</b>
+			</li>
+
+			<li>National ID Number: <b>{{nurse.national_id_no}}</b></li>
+			<li>Gender : <b>{{nurse.gender}}</b></li>
+			<li>Status : <b>{{nurse.status}}</b></li>
+			<li>Residential Address : <b>{{nurse.residential_address}}</b></li>
+			<li>Date of Birth : <b>{{moment(nurse.date_of_birth).format('LL')}}</b></li>
+			<li>Residential Address : <b>{{nurse.residential_address}}</b></li>
+			<li>Phone Number : <b>{{nurse.phone_no}}</b></li>
+			<li>Email Address : <b>{{nurse.email_address}}</b></li>
+		</ul>
+		</p>
+	</blockquote>
+	<p>
+	<a href = "{{url_for('sanatorium.health_login')}}" class = "btn btn-primary">
+		Student Diagnosis Log In
+	</a>
+	<a href = "{{url_for('sanatorium.add_medical_stock')}}" class = "btn btn-primary">
+                Add Medical Stock
+        </a>
+	</p>
+</div>
+{% endblock page_content %}

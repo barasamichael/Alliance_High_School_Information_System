@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% block title %}
+    {{super()}}
+    houses
+{% endblock title%}
+
+{% block page_content %}
+<div class="page-header">
+	<h3>House System</h3>
+</div>
+
+<div class = "container">
+	<h3 class = "text-secondary">Summary</h3>
+	<p>
+	Alliance High School is based on the house system. Houses are named after persons important in the running of the school.Each student is assigned a house during admission. He is required to remain there for his 4 year course and engage in all activities pertaining to the house. He can later on take leadership roles in the house which include:
+	<ul>
+		<li>House Captain</li>
+		<li>Assistant House Captain</li>
+		<li>House Prefect</li>
+		<li>
+			House Committee Member
+			<ul>
+				<li>House Chairman</li>
+				<li>Vice Chairman</li>
+				<li>Secretary</li>
+				<li>Treasurer</li>
+				<li>Administrator</li>
+				<li>Organizing Secretary</li>
+				<li>Activities Co-ordinator</li>
+				<li>Morning Work Cordinator</li>
+			</ul>
+		</li>
+
+	</ul>
+	Most of the house matters are handled by the house committee.
+	</p>
+
+	<p>
+	The overall head of the house is the house master/mistress. He/she is assisted by other teachers in the overall running of the house. The house master/mistress is directly answerable to the school principal.
+	</p>
+
+	<p>
+	Many activities are carried out at the house level. This include:
+	<ul>
+		<li>Inter-house Music and elocution</li>
+		<li>Inter-house Cross country</li>
+		<li>Inter-house Standards</li>
+		<li>Inter-house Soccer</li>
+		<li>Inter-house Drama</li>
+		<li>IT Contest</li>
+		<li>Mathematics Olympiad</li>
+		<li>Chess Competition</li>
+	</ul>
+	</p>
+
+	<p>
+	Houses also compete at hygiene levels. The school nurse carries out inspections at random and points are assigned based on percentage level of cleanliness. Several factors are looked into for instance:
+	<ul>
+		<li>Spreading of beds</li>
+		<li>Cleaning and opening of windows</li>
+		<li>Cleaning of floors</li>
+		<li>Turning off of lights</li>
+		<li>Cleaning of washrooms</li>
+	</ul>
+	</p>
+
+	<p>
+	The abolished DH house based table system was the stronghold for AHS. House members could interact at an intimate level. However, all is not lost. House meetings are conducted every Wednesday morning, Opening Night, Closing evening and Committee meetings on Sunday Night. House members are able to address most of their issues.
+	</p>
+
+	<hr>
+
+	<p>
+	Click to 
+	<a class = "btn btn-primary" href = "{{url_for('houses.register_house')}}">
+		Register house
+	</a>
+	</p>
+	<table class = "table table-hover table-responsive table-striped">
+		<caption>
+			<h3>List Of Houses</h3>
+		</caption>
+		<thead>
+			<tr>
+				<th>house ID</th>
+				<th>name</th>
+				<th>year established</th>
+				<th>motto</th>
+				<th>sister house</th>
+				<th>bed cover</th>
+			</tr>
+		</thead>
+		</tbody>
+		{% for house in houses %}
+		<tr>
+			<td>{{house.house_id}}</td>
+			<td>
+				<a href = "{{url_for('houses.house_profile', house_id = house.house_id)}}">
+					{{house.house_title}}
+				</a>
+			</td>
+			<td>{{house.year_established}}</td>
+			<td>{{house.motto}}</td>
+			<td>{{house.sister_house}}</td>
+			<td>{{house.bed_cover}}</td>
+		</tr>
+		{% endfor %}
+		</tbody>
+	</table>
+</div>
+{% endblock page_content %}

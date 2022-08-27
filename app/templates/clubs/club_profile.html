@@ -1,0 +1,203 @@
+{% extends "base.html" %}
+{% block title %}
+    {{super()}}
+    {{club.club_name}}
+{% endblock title%}
+
+{% block page_content %}
+<div class="page-header">
+	<h1 class = "text-primary">AHS {{club.club_name|title}} Club</h1>
+
+	{% if club.associated_image %}
+
+	<img style = "width : 100%; height : auto;" class = "img-rounded" src = "{{url_for('static', filename = 'clubs/' + folder + '/'+ club.associated_image)}}">
+	{% else %}
+
+	<img style = "width : 100%; height : auto;" class = "img-rounded" src = "{{url_for('static', filename = 'clubs/club.gif')}}">
+
+	{% endif %}
+
+	<hr>
+	<p>                                                                                 <a class = "btn btn-primary" href = "{{url_for('clubs.upload_club_wall_picture', club_id = club.club_id)}}">
+                Update Profile Image
+        </a>
+        </p>
+	<hr>
+	<p>
+	<table class = "table table-responsive table-hover table-striped">
+		<caption><h3>our schedule</h3></caption>
+		<thead class = "thead-dark">
+			<tr>
+				<th>day</th>
+				<th>activity</th>
+				<th>start</th>
+				<th>end</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for schedule in schedules %}
+			<tr>
+				<td>{{schedule.day}}</td>
+				<td>{{schedule.description}}</td>
+				<td>{{schedule.start_time}}</td>
+				<td>{{schedule.end_time}}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	<a class = "btn btn-primary" href = "{{url_for('clubs.register_club_schedule', club_id = club.club_id)}}">
+                Update Schedule
+	</a>
+	</p>
+</div>
+
+<div class = "container">
+	<h3 class = "text-secondary">About us</h3>
+	<p>{{club.about_us}}</p>
+
+	<p>
+	<a class = "btn btn-primary" href = "{{url_for('clubs.clubs')}}">
+		Update 'About Us' Info
+	</a>
+	</p>
+
+	<h3 class = "text-secondary">Mission Statement</h3>
+	<p>{{club.mission}}</p>
+
+	<h3 class = "text-secondary">Vision Statement</h3>
+	<p>{{club.vision}}</p>
+
+	<hr>
+
+	<p>
+	Not a member? Request membership today.  
+	<a class = "btn btn-primary" href = "{{url_for('clubs.clubs')}}">
+		Request Here
+	</a>
+	</p>
+
+	<hr>
+
+	<p>
+	Click to 
+	<a class = "btn btn-primary" href = "{{url_for('clubs.register_club')}}">
+		Add Member
+	</a>
+	</p>
+
+	<hr>
+
+	<p>                                                                                 <a class = "btn btn-primary" href = "{{url_for('clubs.club_founder', club_id = club.club_id)}}">
+		Add Club Founder
+	</a>
+	</p>
+
+	<table class = "table table-hover table-responsive table-striped">
+		<caption><h3>Club Founders</h3></caption>
+		<thead class = "thead-dark">
+			<tr>
+				<th>Names</th>
+				<th>Gender</th>
+				<th>Email Address</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for founder in founders %}
+			<tr>
+				<td>{{founder.names}}</td>
+				<td>{{founder.gender}}</td>
+				<td>{{founder.email_address}}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<tr>
+
+	<table class = "table table-hover table-responsive table-striped">
+		<caption>
+			<h3>Officials</h3>
+		</caption>
+		<thead>
+			<tr>
+				<th>Admission Number</th>
+				<th>Names</th>
+				<th>Class</th>
+				<th>House</th>
+				<th>Position</th>
+			</tr>
+		</thead>
+		</tbody>
+		{% for official in officials %}
+		<tr>
+			<td>{{club.club_id}}</td>
+			<td>{{club.club_name}}</td>
+			<td>{{club.year_founded}}</td>
+			<td>{{club.venue}}</td>
+		</tr>
+		{% endfor %}
+		</tbody>
+	</table>
+
+	<tr>
+
+	<p>                                                                                 <a class = "btn btn-primary" href = "{{url_for('clubs.club_achievement', club_id = club.club_id)}}">
+                Record Achievement
+	</a>
+        </p>
+
+	<table class = "table table-responsive table-hover table-striped">
+		<caption><h3>Achievements</h3></caption>
+		<thead class = "thead-dark">
+			<tr>
+				<th>Year</th>
+				<th>Achievement</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for achievement in achievements %}
+			<tr>
+				<td>{{achievement.year_achieved}}</td>
+				<td>{{achievement.description}}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<hr>
+
+	<p>                                                                                 <a class = "btn btn-primary" href = "{{url_for('clubs.club_event', club_id = club.club_id)}}">Add Event</a>
+        </p>
+
+	<h3 class = "text-primary">Are you ready for what is coming...</h3>
+
+	<p>
+	<a class = "btn btn-primary" href = "{{url_for('clubs.clubs')}}">
+		Click to View Past Events
+	</a>
+	</p>
+
+	<hr>
+	{% for event in events %}
+	<blockquote>
+		<img style = "width:100%; height:auto;" class = "img-rounded" src = "{{url_for('static', filename = 'clubs/club.gif')}}">
+		<h3 class = "text-muted">
+			{{event.title|title}}
+                </h3>
+		<p>{{event.description}}</p>
+		<h4 class = "text-secondary">Venue : {{event.venue|title}}</h4>
+		<h4 class = "text-primary">Posted : {{moment(event.date_registered).fromNow(refresh = True)}}</h4>
+
+		<p>
+
+		<a class = "btn btn-primary" href = "{{url_for('clubs.event_profile', event_id = event.event_id)}}">
+			More...
+		</a>
+
+		</p>
+	</blockquote>
+	<hr>
+	{% endfor %}
+
+</div>
+{% endblock page_content %}

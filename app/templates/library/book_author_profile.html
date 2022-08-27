@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}
+    {{super()}}
+    {{author.first_name}} {{author.middle_name}} {{author.last_name}}
+{% endblock title%}
+
+{% block page_content %}
+<div class="page-header">
+	<h3>
+		{{author.first_name}} {{author.middle_name}} {{author.last_name}}
+	</h3>
+
+	{% if author.associated_image %}
+
+	<img src = "{{url_for('static', filename = 'library/authors/' + author.associated_image)}}" class = "img-rounded profile-thumbnail">
+
+	{% elif author.gender == 'Female' %}
+
+            <img src = "{{url_for('static', filename = 'profiles/female-avatar.png')}}" class = "img-rounded profile-thumbnail">
+
+        {% else %}
+
+            <img class="img-rounded profile-thumbnail" size = '256' src = "{{url_for('static', filename = 'profiles/male-avatar.png')}}">
+
+        {% endif %}
+
+	<p style = "padding-top : 1%;">
+	<a href = "{{url_for('library.update_author_profile_image', author_id = author.author_id)}}" class = "btn btn-primary">
+		Update Profile Image
+	</a>
+	</p>
+
+	<blockquote class = "blockquote" style = "margin-top:6%;">
+		<h3 class = "text-secondary">list of books</h3>
+		{% for book in books %}
+		{% if book.image %}
+		
+		<img class = "img-rounded" style = "width : 31%; height : auto; padding-bottom : 1%;" src = "{{url_for('static', filename = 'library/' + book.image)}}">
+		
+		{% else %}
+
+		<img class = "img-rounded" style = "width : 31%; height : auto; padding-bottom : 1%;" src = "{{url_for('static', filename = 'library/default_book.jpeg')}}">
+		
+		{% endif %}
+		{% endfor %}
+	</blockquote>
+</div>
+{% endblock page_content %}

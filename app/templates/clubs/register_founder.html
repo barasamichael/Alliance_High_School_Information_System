@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}
+    {{super()}}
+    register club founder
+    {% endblock title%}
+
+{% block page_content %}
+<div class="page-header">
+        <h1>register club founder</h1>
+</div>
+<div class = "container">
+        {{ wtf.quick_form(form) }}
+
+	<hr>
+
+	<p>
+	Click here to
+	<a class="btn btn-primary" href="{{url_for('clubs.club_profile', club_id = club_id)}}">
+		Go Back to Club Homepage
+	</a>
+	</p>
+</div>
+{% endblock page_content %}

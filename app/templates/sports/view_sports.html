@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}
+    {{super()}}
+    list of sports
+{% endblock title%}
+
+{% block page_content %}
+<div class="page-header">
+	<h3 class = "text-info">list of sports</h3>
+</div>
+<div>
+	{% for sport in sports %}
+	<blockquote class = "blockquote">
+		<h3>{{sport.sport_name}}</h3>
+
+		{% if sport.associated_image %}
+
+		<img style = "width : 100%; height : auto;" src = "{{url_for('static', filename = '/sports/' + sport.associated_image)}}">
+
+		{% endif %}
+
+		<p style = "padding-top : 1%;">
+		<a class = "btn btn-primary" href = "{{url_for('sports.sport_profile', sport_id = sport.sport_id)}}">
+			more...
+		</a>
+		</p>
+	</blockquote>
+	{% endfor %}
+</div>
+{% endblock page_content %}

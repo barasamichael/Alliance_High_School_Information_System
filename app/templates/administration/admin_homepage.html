@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}
+    {{super()}}
+    Administration
+{% endblock title%}
+
+{% block page_content %}
+<div class="page-header">
+	<h3 class = "text-info">Administration</h3>
+	<img class = "img-rounded" style = "width : 100%; height : auto;" src = "{{url_for('static', filename = 'administration/bom.jpeg')}}">
+</div>
+<div>
+<h3>The Skeleton</h3>
+<p>
+The skeleton is the face of the Alliance High School. It is composed of devoted individuals who strive to ensure a smooth running of the school. All matters pertaining to administration are handled by the skeleton. Members of the skeleton occupy a special place on the school podium on parades.
+<img class = "img-rounded" style = "width : 100%; height : auto;" src = "{{url_for ('static', filename = 'administration/skeleton.jpeg')}}">
+<blockquote class = "blockquote">
+	<h4>Members</h4>
+</blockquote>
+</p>
+
+<h3>The Cabinet</h3>
+<p>
+The cabinet is composed of the Chief Principal, the Deputy Principal Academics, the Deputy Principal Administration, the Governor General and the President.
+</p>
+<img class = "img-rounded" style = "width : 100%; height : auto;" src = "{{url_for
+('static', filename = 'administration/chief_principal.jpeg')}}">
+<p>
+Its core purpose is to ensure proper communication between the administration and students with representatives from both sides. The Governor General points out issues affecting the students and possible remedies while the Chief Principal points the direction to be taken with the help of the deputies.
+</p>
+<blockquote class = "blockquote">
+        <h4>Members</h4>
+</blockquote>
+<h3>The Board of Management</h3>
+<img class = "img-rounded" style = "width : 100%; height : auto;" src = "{{url_for
+('static', filename = 'administration/admin.jpeg')}}">
+<p>
+The success and proper running of the school is owed to the Alliance High School B.O.M. This group of dedicated individuals sacrifice themselves day in day out to ensure that the school is what it is. In a nutshell, Alliance is not what it is without these patriotic Busherians. 
+</p>
+<blockquote class = "blockquote">
+        <h4>Members</h4>
+</blockquote>
+
+<h3>The Pentagon</h3>
+<p>
+<img class = "img-rounded" style = "width : 100%; height : auto;" src = "{{url_for
+('static', filename = 'administration/pentagon.jpeg')}}">
+The Pentagon is a body that is composed of the Governor General, the President, the Guru, the Chief and the Captain. This able men head the prefect body and assist in the efficient running of the school alongside the administration.
+<blockquote class = "blockquote">
+        <h4>Members</h4>
+</blockquote>
+</p>
+</div>
+{% endblock page_content %}

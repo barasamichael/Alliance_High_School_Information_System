@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% block title %}
+    {{super()}}
+    {{event.title}}
+{% endblock title%}
+
+{% block page_content %}
+<div class="page-header">
+	<h1>{{event.title}}</h1>
+	<h3 class = "text-muted">
+	{% if event.club_image%}
+	<img style = "width : 8%; height : auto;" class = "img-circle" src = "{{url_for('static', filename = 'clubs/' + club_folder + '/'+ event.club_image)}}">
+	{% else %}
+        <img style = "width : 8%; height : auto;" class = "img-circle" src = "{{url_for('static', filename = 'clubs/club.gif')}}">
+
+        {% endif %}
+		<a href = "{{url_for('clubs.club_profile', club_id = event.club_id)}}">
+			{{event.club_name}} Club
+		</a>
+	</h3>
+</div>
+<div class = "container">
+	{% if event.associated_image %}
+        <img style = "width : 100%; height : auto;" class = "img-rounded" src = "{{url_for('static', filename = 'clubs/events/' + folder + '/'+ event.associated_image)}}">
+        {% else %}
+        <img style = "width : 100%; height : auto;" class = "img-rounded" src = "{{url_for('static', filename = 'clubs/club.gif')}}">
+
+        {% endif %}
+	<hr>
+	<p>                                                                                 <a class = "btn btn-primary" href = "{{url_for('clubs.upload_event_wall_picture', event_id = event.event_id)}}">
+		Update Profile Image
+	</a>
+	</p>
+	<hr>
+	<p>{{event.description}}</p>
+
+	Click to
+        <a class = "btn btn-primary" href = "{{url_for('clubs.upload_event_images', event_id = event.event_id)}}">
+		Upload event images
+	</a>
+	<div class = "container">
+		<h3 class = "text-info">
+			Gallery
+		</h3>
+		{% for image in images %}
+		<img style = "width : 30%; height : auto;" class = "img-rounded" src = "{{url_for('static', filename = 'clubs/events/' + folder + '/'+ image)}}">
+		{% endfor %}
+	</div>
+	<hr>
+	<div class = "container">
+		<table class = "table table-hover table-responsive table-striped">
+			<caption><h3>Speakers</h3></caption>
+			<thead>
+				<tr>
+					<th>speaker</th>
+					<th>gender</th>
+					<th>profession</th>
+					<th>email_address</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for speaker in speakers %}
+				<tr>
+					<td>
+						{{speaker.first_name}} {{speaker.last_name}}
+					</td>
+					<td>{{speaker.gender}}</td>
+					<td>{{speaker.profession}}</td>
+					<td>{{speaker.email_address}}</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+        </div>
+	<p>
+        Click to
+        <a class = "btn btn-primary" href = "{{url_for('clubs.register_event_speaker', event_id = event.event_id)}}">
+                Welcome Speaker
+        </a>
+        </p>
+	<hr>
+	<p>
+	Click to 
+	<a class = "btn btn-primary" href = "{{url_for('clubs.club_profile', club_id = event.club_id)}}">
+		Go to Club Homepage
+	</a>
+	</p>
+</div>
+{% endblock page_content %}

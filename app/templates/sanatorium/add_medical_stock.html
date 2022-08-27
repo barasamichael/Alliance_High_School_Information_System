@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}
+    {{super()}}
+    add medical stock
+{% endblock title%}
+
+{% block page_content %}
+<div class="page-header">
+        <h1>add medical stock</h1>
+</div>
+<div class = "container">
+        {{ wtf.quick_form(form) }}
+	<a style = "margin-top:2%;" href = "{{url_for('sanatorium.view_medicine_stock')}}" class = "btn btn-primary">
+                View Registered Medicine Stock
+        </a>
+</div>
+{% endblock page_content %}

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}
+    {{super()}}
+    {{category.category_name}}
+{% endblock title%}
+
+{% block page_content %}
+<div class="page-header">
+	<h3>
+		{{category.category_name}}
+	</h3>
+	<p>
+	<blockquote class = "blockquote" style = "margin-top:6%;">
+		{% for book in books %}
+		{% if book.image %}
+		
+		<img class = "img-rounded" style = "width : 31%; height : auto; padding-bottom : 1%;" src = "{{url_for('static', filename = 'library/' + book.image)}}">
+		
+		{% else %}
+
+		<img class = "img-rounded" style = "width : 31%; height : auto; padding-bottom : 1%;" src = "{{url_for('static', filename = 'library/default_book.jpeg')}}">
+		
+		{% endif %}
+		{% endfor %}
+	</blockquote>
+</div>
+<div class = "pagination">                                                                        {{macros.pagination_widget(pagination, 'library.category_profile', category_id = category.category_id)}}
+</div>
+{% endblock page_content %}

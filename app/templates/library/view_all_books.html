@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}
+    {{super()}}
+    list of books
+{% endblock title%}
+
+{% block page_content %}
+<div>
+	<table class = "table table-responsive table-striped">
+		<caption><h3>List of Books Available</h3></caption>
+		<thead class = "thead thead-dark">
+			<tr>
+				<th>book ID</th>
+				<th>title</th>
+				<th>publisher</th>
+				<th>category</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for book in books %}
+			<tr>
+				<td>
+					<a href = "{{url_for('library.book_profile', book_id = book.book_id)}}">
+						{{book.book_id}}
+					</a>
+				</td>
+				<td>
+					<a href = "{{url_for('library.book_profile', book_id = book.book_id)}}">
+						{{book.title}}
+					</a>
+				</td>
+				<td>
+					<a href = "{{url_for('library.publisher_profile', publisher_id = book.publisher_id)}}">
+						{{book.publisher_name}}
+					</a>
+				</td>
+				<td>
+					<a href = "{{url_for('library.category_profile', category_id = book.category_id)}}">
+						{{book.category_name}}
+					</a>
+				</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
+<div class = "pagination">                                                                        {{macros.pagination_widget(pagination, 'library.view_all_books')}}
+</div>
+{% endblock page_content %}

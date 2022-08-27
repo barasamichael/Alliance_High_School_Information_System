@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}
+    {{super()}}
+    diagnosis
+{% endblock title%}
+
+{% block page_content %}
+<div class="page-header">
+        <h1>diagnosis</h1>
+</div>
+<div class = "container">
+        {{ wtf.quick_form(form) }}
+
+	<p style = "margin-top:3%;">
+	<a class = "btn btn-primary" href = "#">
+		Next : Medication
+	</a> 
+	</p>
+</div>
+{% endblock page_content %}

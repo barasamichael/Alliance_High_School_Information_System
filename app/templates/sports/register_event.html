@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}
+{{super()}}
+    register sport
+{% endblock title%}
+
+{% block page_content %}
+<div class="page-header">
+        <h1>register sport</h1>
+</div>
+<div class = "container">
+        {{ wtf.quick_form(form) }}
+</div>
+<div>
+<hr>
+<p>
+        <a href = "#" class = "btn btn-primary">
+                view all sports
+        </a>
+</p>
+</div>
+{% endblock page_content %}

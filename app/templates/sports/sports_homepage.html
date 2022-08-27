@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}
+    {{super()}}
+    Sports
+{% endblock title%}
+
+{% block page_content %}
+<div class="page-header">
+	<h3 class = "text-info">Sports</h3>
+</div>
+<div>
+	<p>
+	The school is a participant in the national sports festival. The following games are offered at the school: <span class = "text-primary">athletics, badminton, basketball,baseball, football (soccer), handball, hockey, lawn tennis, rugby football, swimming</span> and <span class = "text-primary">table tennis</span>.
+</p>
+<p>
+{% for sport in sports %}
+
+{% if sport.associated_image %}
+	<img class = "img-rounded" style = "width : 48%; height : auto; padding : 1%;" src = "{{url_for('static', filename = 'sports/' + sport.associated_image)}}">
+{% endif %}
+
+{% endfor %}
+</p>
+<p>
+The school has three basketball courts, two football pitches, two hockey pitches, a swimming pool, a handball field, an athletics track and a gymnasium with table tennis table.
+	</p>
+	<p>
+The school's routine includes a games period every weekday from 16:30hrs to 17:40hrs. On Tuesdays the program is suspended for clubs’ and societies’ meetings. There are inter-house sports competitions spread across the three school terms.
+	</p>
+	<p>
+During the second school term, a mini Olympics is held in the school. During this event, the thirteen houses compete against each other in track and field events. The winning house receives the Standards Trophy and gets to feast on a bull during the end of term school dinner.
+	</p>
+	<p>
+There is also a <span class = "text-primary">compulsory cross-country jog</span> on the first weekend of the school term. This event is particularly popular yet unpopular among the students; many approach it with zeal while many an A.H.S student approach the games master with an excuse in an effort to avoid the jog.
+	</p>
+	<p>
+	<a class = "btn btn-primary" href = "{{url_for('sports.register_sport')}}">
+		register sport
+	</a>
+	<a class = "btn btn-primary" href = "{{url_for('sports.register_school')}}">
+                register school
+        </a>
+	</p>
+</div>
+{% endblock page_content %}

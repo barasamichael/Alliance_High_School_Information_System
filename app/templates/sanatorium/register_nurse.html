@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}
+    {{super()}}
+    register nurse
+{% endblock title%}
+
+{% block page_content %}
+<div class="page-header">
+        <h1>register nurse</h1>
+</div>
+<div class = "container">
+        {{ wtf.quick_form(form) }}
+	<hr>
+	<p>
+	Click here to 
+	<a class="btn btn-primary" href="{{url_for('sanatorium.view_nurses')}}">
+		View Nurses
+	</a>
+	</p>
+</div>
+{% endblock page_content %}

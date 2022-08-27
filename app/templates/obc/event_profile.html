@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}
+    {{super()}}
+    {{event.title}}
+{% endblock title%}
+
+{% block page_content %}
+<div class="page-header">
+	<h3>{{event.title}}</h3>
+</div>
+<div class = "container">
+	{% if event.associated_image %}
+	<img class = "img-rounded" style = "width:100%; height:auto;" src = "{{url_for('static', filename = 'obc/' + folder + '/' +event.associated_image)}}">
+	{% endif %}
+
+	<hr>
+	<p>                                                                                 <a class="btn btn-primary" href="{{url_for('obc.update_event_image', event_id = event.event_id)}}">
+		Update Event Profile Image
+	</a>
+	</p>
+	<hr>
+	<p>{{event.description}}</p>
+
+	<p>                                                                                 <a class="btn btn-primary" href="{{url_for('obc.obc_homepage')}}">
+                        Go Back to OBC Homepage
+        </a>
+        </p>
+
+	<h3 class = "text-muted">Other events</h3>
+	{% for event in others %}
+	<blockquote>
+                <h4 class = "text-secondary">{{event.title}}</h4>
+                <p>{{event.description}}</p>
+                <p>Posted : <span class = "text-primary">{{moment(event.date_registered).format('LLL')}}</span>                                                               </p>
+                <p>                                                                                 <a class="btn btn-primary" href="{{url_for('obc.event_profile', event_id = event.event_id)}}">
+			More...
+		</a>
+		</p>
+        </blockquote>
+	{% endfor %}
+</div>
+{% endblock page_content %}

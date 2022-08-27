@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block title %}
+    {{super()}}
+    {{department.subject_title}} department homepage
+{% endblock title%}
+
+{% block page_content %}
+<div class="page-header">
+	<h2>
+		{{department.subject_title|title}} Department
+	</h2>
+
+	<img class = "img-rounded" style = "width : 100%; height : auto;" src = "{{url_for('static', filename  = 'ahs_chapel.jpeg')}}">
+
+	<table class = "table table-hover table-responsive table-striped">
+		<caption><h3>View Our Highly Esteemed Team</h3></caption>
+		<thead class = "thead-dark">
+			<th>TSC Number</th>
+			<th>National ID Number</th>
+			<th>Names</th>
+			<th>Gender</th>
+			<th>Email Address</th>
+			<th>Phone Number</th>
+		</thead>
+		<tbody>
+			{% for teacher in teachers %}
+			<tr>
+				<td>{{teacher.TSC_no}}</td>
+				<td>{{teacher.national_id_no}}</td>
+				<td>
+                                        <a href = "{{url_for('departments.teacher_profile', teacher_id = teacher.teacher_id)}}">
+                                        {{teacher.first_name}} {{teacher.middle_name}} {{teacher.last_name}}
+                                        </a>
+                                </td>
+				<td>{{teacher.gender}}</td>
+				<td>{{teacher.email_address}}</td>
+				<td>{{teacher.phone_no}}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	<p>
+	<a class = "btn btn-primary" href = "{{url_for('departments.add_teacher', department_id = department.subject_id)}}">
+		register new teacher to department
+	</a>
+	<a style = "margin-left : 20%;" class = "btn btn-primary" href = "{{url_for('departments.assign_teacher', department_id = department.subject_id)}}">
+                assign class to a teacher
+        </a>
+	</p>
+	<table class = "table table-hover table-responsive table-striped">
+		<caption><h3>class assignments</h3></caption>
+		<thead class = "thead-dark">
+			<tr>
+				<th>class</th>
+				<th>tutor</th>
+				<th>date assigned</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for item in assignments %}
+			<tr>
+				<td>{{item.title}}</td>
+				<td>                                                                                              <a href = "{{url_for('departments.teacher_profile', teacher_id = item.teacher_id)}}">
+                                        {{item.first_name}} {{item.middle_name}} {{item.last_name}}
+                                        </a>
+                                </td>
+				<td>{{moment(item.date_created).format('LL')}}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
+{% endblock page_content %}

@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}
+    {{super()}}
+    teacher homepage
+{% endblock title%}
+
+{% block page_content %}
+<div class="page-header">
+	<h3>
+		{{teacher.first_name}} {{teacher.middle_name}} {{teacher.last_name}}
+	</h3>
+	{% if teacher.gender == 'female' %}
+
+            <img src = "{{url_for('static', filename = 'profiles/female-avatar.png')}}" class = "img-fluid">
+
+        {% else %}
+
+            <img class="img-rounded profile-thumbnail" size = '256' src = "{{url_for('static', filename = 'profiles/male-avatar.png')}}">
+
+        {% endif %}
+	<blockquote style = "margin-top:4%;">
+		<ul class = "list-unstyled">
+			<li>Name
+				<b>
+					{{teacher.first_name}} {{teacher.middle_name}} {{teacher.last_name}}
+				</b>
+			</li>
+			<li>Gender : <b>{{teacher.gender}}</b></li>
+			<li>TSC Number : <b>{{teacher.TSC_no}}</b></li>
+			<li>National ID Number : <b>{{teacher.national_id_no}}</b></li>
+			<li>Date of Birth : 
+				<b>
+					{{moment(teacher.date_of_birth).format('LL')}}
+				</b>
+			</li>
+			<li>Email Address : <b>{{teacher.email_address}}</b></li>
+			<li>Phone Number : <b>{{teacher.phone_no}}</b></li>
+			<li>Residential Address : 
+				<b>
+					{{teacher.residential_address}}
+				</b>
+			</li>
+		</ul>
+	</blockquote>
+	<p>
+	<a class = "btn btn-primary" href = "{{url_for('departments.select_subject', teacher_id = teacher.teacher_id)}}">
+		Submit Marks Recursively
+	</a>
+	</p>
+</div>
+{% endblock page_content %}

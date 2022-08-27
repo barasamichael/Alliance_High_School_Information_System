@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block title %}
+    {{super()}}
+    {{publisher.publisher_name}}
+{% endblock title%}
+
+{% block page_content %}
+<div class="page-header">
+	{% if publisher.image %}
+
+	<img class = "img-rounded" src = "{{url_for('static', filename = 'library/publishers/' + publisher.image)}}">
+
+	{% else %}
+
+	<img class = "img-rounded" src = "{{url_for('static', filename = 'library/default_publisher.png')}}">
+
+	{% endif %}
+
+	<p style = "padding-top : 1%;">
+	<a href = "{{url_for('library.update_publisher_profile_image', publisher_id = publisher.publisher_id)}}" class = "btn btn-primary">
+		Update Profile Image
+	</a>
+	</p>
+</div>
+<div>
+	<blockquote class = "blockquote">
+		<h3 class = "text-info">{{publisher.publisher_name}}</h3>
+		<p><b>Location </b>:{{publisher.location}}</p>
+		<p><b>Reference </b>:{{publisher.reference}}</p>
+	</blockquote>
+
+	<h3 class = "text-info">list of books</h3>
+	<table class = "table table-hover table-striped table-dark">
+		<thead class= "thead-dark">
+			<tr>
+				<th>ID</th>
+				<th>title</th>
+				<th>year</th>
+				<th>category</th>
+				<th>status</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for book in books %}
+			<tr>
+				<td>
+					<a href = "{{url_for('library.book_profile', book_id = book.book_id)}}">
+						{{book.book_id}}
+					</a>
+				</td>
+				<td>
+					<a href = "{{url_for('library.book_profile', book_id = book.book_id)}}">
+						{{book.title}}
+					</a>
+				</td>
+				<td>{{book.year_of_production}}</td>
+				<td>
+					<a href = "{{url_for('library.category_profile', category_id = book.category_id)}}">
+						{{book.category_name}}
+					</a>
+				</td>
+				<td>{{book.status}}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+</div>
+<div class = "pagination">
+	{{macros.pagination_widget(pagination, 'library.publisher_profile', publisher_id = publisher.publisher_id)}}
+</div>
+{% endblock page_content %}

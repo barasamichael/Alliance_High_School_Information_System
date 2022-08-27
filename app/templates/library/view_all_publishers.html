@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}
+    {{super()}}
+    list of publishers
+{% endblock title%}
+
+{% block page_content %}
+<div>
+<table class = "table table-striped table-responsive">
+	<caption><h3>Publishers</h3></caption>
+	<tbody>
+		{% for publisher in publishers %}
+		<tr>
+			<td>
+				<a href = "{{url_for('library.publisher_profile', publisher_id = publisher.publisher_id)}}">
+					{{publisher.publisher_name}}
+				</a>
+			</td>
+			<td>{{publisher.location}}</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+</div>
+<div class = "pagination">                                                                        {{macros.pagination_widget(pagination, 'library.view_all_publishers')}}
+</div>
+{% endblock page_content %}

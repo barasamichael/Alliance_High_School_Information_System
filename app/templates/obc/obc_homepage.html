@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+{% block title %}
+    {{super()}}
+    obc-homepage
+{% endblock title%}
+
+{% block page_content %}
+<div class="page-header">
+	<h3 class = "text-info">Old Boys' Club</h3>
+	<p>
+	The Alliance High School Old Boys’ Club (AHS OBC) is the alumni association of Alliance High School registered under the Societies Act on 23rd June 1959.
+	<img class = "img-rounded" style = "width : 100%; height : auto;" src = "{{url_for('static', filename = 'obc/obc_homeimage.jpg')}}">
+	</p>
+	<h4 class = "text-secondary">Objectives</h4>
+	<p>
+	<ul>
+		<li>
+			To keep the Old Boys of the Alliance High School in touch with the School and with one another;
+		</li>
+		<li>
+			To encourage Old Boys to live up to the ideals for which the School was founded and to put into practice the motto of the school “Strong to serve”;
+		</li>
+		<li>
+			To assist the school and its old Boys in any suitable manner, in particular in the maintenance and improvement of the standards of learning and conduct;
+		</li>
+		<li>
+			To advance and promote education at the School by providing guidance, resources, material and financial support and collaborating with the School towards advancement of education.
+		</li>
+	</ul>
+	</p>
+	<h4 class = "text-secondary">Leadership</h4>
+	<img class = "img-rounded" style = "width : 100%; height : auto;" src = "{{url_for('static', filename = 'obc/obc_leadership.jpeg')}}">                                                </p>
+	<p>
+	The AHS OBC is led by an Executive Committee comprising of elected and co-opted members. The executive committee is supported in its work by a secretariat. The Executive Committee is comprised of 14 elected and 6 co-opted members.
+	</p>
+	<p>
+	Executive Committee members hold office for a maximum of 2 terms of three years each. At every Annual General Meeting, a third (1/3) of the elected Executive Committee Members shall retire on rotation but with eligibility for re-election.
+	</p>
+	<table class = "table table-hover table-responsive table-striped">
+		<caption><h4>AHS OBC Executive Committee Members</h4></caption>
+		<thead class = "thead-dark">
+			<tr>
+				<th>Names</th>
+				<th>Position</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for obc in obcs %}
+			<tr>
+				<td>
+					<a href = "{{url_for('obc.obc_profile', obc_id = obc.obc_id)}}">
+						{{obc.first_name}} {{obc.last_name}} {{obc.middle_name}}
+					</a>
+				</td>
+				<td>{{obc.status}}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	<hr>
+	<p>
+        Click here to
+        <a class="btn btn-primary" href="{{url_for('obc.register_member')}}">
+                Register Member
+        </a>
+        </p>
+	<table class = "table table-hover table-responsive table-striped">
+		<caption><h4>Members</h4></caption>
+		<thead class = "thead-dark">
+			<tr>
+					<th>admission number</th>
+					<th>names</th>
+					<th>year</th>
+					<th>house</th>
+					<th>profession</th>
+					<th>email address</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for member in members %}
+			<tr>
+				<td>{{member.adm_no}}</td>
+				<td>
+					<a href = "{{url_for('obc.obc_profile', obc_id = member.obc_id)}}">
+					{{member.first_name}} {{member.middle_name}} {{member.last_name}}
+					</a>
+				</td>
+				<td>{{member.year}}</td>
+				<td>{{member.house_title}}</td>
+				<td>{{member.profession}}</td>
+				<td>{{member.email_address}}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<hr>
+        <p>                                                                                 Click here to
+        <a class="btn btn-primary" href="{{url_for('obc.register_event')}}">
+                Register Event
+        </a>                                                                                </p>
+	<h3 class = "text-muted">Events</h3>
+
+	{% for event in events %}
+	<blockquote>
+		<h4 class = "text-secondary">{{event.title}}</h4>
+		<p>{{event.description}}</p>
+		<p>Posted : <span class = "text-primary">{{moment(event.date_registered).format('LLL')}}</span>
+		</p>
+
+		<p>
+		<a class="btn btn-primary" href="{{url_for('obc.event_profile', event_id = event.event_id)}}">
+			More...
+		</a>
+		</p>
+
+	</blockquote>
+	{% endfor %}
+
+</div>
+{% endblock page_content %}

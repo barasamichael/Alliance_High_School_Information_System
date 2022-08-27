@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}
+    {{super()}}
+    register achievement
+    {% endblock title%}
+
+{% block page_content %}
+<div class="page-header">
+        <h1>register achievement</h1>
+</div>
+<div class = "container">
+        {{ wtf.quick_form(form) }}
+
+	<hr>
+
+	<p>
+	<a class="btn btn-primary" href="{{url_for('obc.obc_profile', obc_id = obc_id)}}">
+		Back
+	</a>
+	</p>
+</div>
+{% endblock page_content %}

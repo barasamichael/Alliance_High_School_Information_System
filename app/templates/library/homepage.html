@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block title %}
+    {{super()}}
+    homepage
+{% endblock title%}
+
+{% block page_content %}
+<div class="page-header">
+	<h3>The Library Department</h3>
+	<img class = "img-rounded" src = "{{url_for('static', filename = 'Maktaba-award-2017.jpg')}}" style = "width : 100%; height : auto;">
+</div>
+<div>
+<p>
+
+Welcome to the Alliance High School library, it is our hope that you will make the fullest use of the Library and its information services, sources and resources. The library and resource center are housed in the same building to accommodate both teachers and students in their research work making the library the best and conducive environment for their work. The Library supports the teaching, learning and research activities of the school by providing the most relevant and up to-date information, resources and services.
+</p>
+
+<h3 class = "text-secondary">Collection</h3>
+<p>
+Currently the library has a collection of about 5000 books to cater for the teachers and students.
+</p>
+
+<h3 class = "text-secondary">Capacity</h3>
+<img class = "img-rounded" src = "{{url_for('static', filename = 'inside_library.jpeg')}}" style = "width : 100%; height : auto;">
+<p>
+Reading area: Currently the library has a reading area for more than 500 students at a time.The library has the following distinctive areas: Senior Reading area that accommodates form 3 & 4’s, Junior reading area that accommodates form 1 & 2’s, Special collection, Reserve collection, Acquisitions area for processing the materials and children area.
+</p>
+<h3 class = "text-secondary">Mission</h3>
+<p>
+To provide competitive, adequate and relevant information services in support of learning, teaching and research
+</p>
+
+<h3 class = "text-secondary">Vision</h3>
+<p>
+To be an information Centre that provides access to quality information that enhances research, training and technological advancement.
+</p>
+
+<h3 class = "text-secondary">Objectives</h3>
+<p>
+<ul>
+	<li>
+		Selecting and acquiring up-to-date information resources in all formats that are relevant to the information needs of the school
+	</li>
+	<li>
+		Organizing the library collection using the internationally accepted standards to allow for easy retrieval.
+	</li>
+	<li>
+		Establishing, promoting and maintaining a wide range of services that will support the academic programme of the school and encourage optimum exploitation of the resources of the library.
+	</li>
+	<li>
+		Building the skills of its users continuously by conducting proper user education and instruction through a variety of methods in order to provide guidance to the library’s collection.
+	</li>
+	<li>
+		Recruiting, developing and retaining well qualified, experienced and dedicated professional library staff in the area of library and information sciences who will offer high quality services to the users of the library.
+	</li>
+	<li>
+		Adopting technologies that will make information resources accessible to the school community in an efficient and effective manner.
+	</li>
+</ul>
+</p>
+<p>
+<a href = "{{url_for('library.register_book')}}" class = "btn btn-primary">
+	register book
+</a>
+<a href = "{{url_for('library.register_book_category')}}" class = "btn btn-primary">
+	register book category
+</a>
+<a href = "{{url_for('library.register_author')}}" class = "btn btn-primary">
+	register author
+</a>
+<a href = "{{url_for('library.register_publisher')}}" class = "btn btn-primary">
+        register publisher
+</a>
+</p>
+</div>
+{% endblock page_content %}

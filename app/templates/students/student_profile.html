@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+{% block title %}
+    {{super()}}
+    student home page
+{% endblock title%}
+
+{% block page_content %}
+<div class="page-header">
+	<h3>
+		{{student.first_name}} {{student.middle_name}} {{student.last_name}}
+	</h3>
+
+	{% if student.gender == 'female' %}
+
+            <img src = "{{url_for('static', filename = 'profiles/female-avatar.png')}}" class = "img-fluid">
+
+        {% else %}
+
+            <img class="img-rounded profile-thumbnail" size = '256' src = "{{url_for('static', filename = 'profiles/male-avatar.png')}}">
+
+        {% endif %}
+
+	<blockquote class = "blockquote">
+		<p>
+		<ul class = 'list-unstyled'>
+
+			<li>Names : <b>{{student.first_name}} {{student.middle_name}} {{student.last_name}}</b>
+			</li>
+
+			<li>Admission no : <b>{{student.admission_no}}</b></li>
+			<li>House : <b>{{student.house_title}}</b></li>
+			<li>Nationality : <b>{{student.nationality}}</b></li>
+			<li>Residential Address : <b>{{student.residence}}</b></li>
+			<li>Date of Birth : <b>{{moment(student.date_of_birth).format('LL')}}</b></li>
+			<li>UPI Number : <b>{{student.nemis}}</b></li>
+			<li>Phone Number : <b>{{student.phone_no}}</b></li>
+			<li>Email Address : <b>{{student.email_address}}</b></li>
+		</ul>
+		</p>
+	</blockquote>
+</div>
+<div class = "container">
+	<div class = "post-tabs">                                                               <ul class = "nav nav-tabs">
+			<li class = "active">
+				<a href = "{{url_for('students.academics', admission_no = student.admission_no)}}">
+					academics
+				</a>
+			</li>
+			<li>
+				<a href = "{{url_for('students.discipline', admission_no = student.admission_no)}}">
+                                        discipline
+                                </a>                                                                        </li>
+			<li>
+				<a href = "{{url_for('students.sports', admission_no = student.admission_no)}}">
+                                        sports
+                                </a>                                                                        </li>
+			<li>
+				<a href = "{{url_for('students.co_curricular', admission_no = student.admission_no)}}">
+                                        co-curricular
+                                </a>                                                                        </li>
+			<li>
+				<a href = "{{url_for('students.accounts', admission_no = student.admission_no)}}">
+                                        accounts
+                                </a>                                                                        </li>
+			<li>
+				<a href = "{{url_for('students.health', admission_no = student.admission_no)}}">
+                                        health
+                                </a>                                                                        </li>
+		</ul>
+	</div>
+
+	{% if tab_variable == 1 %}
+
+	{% elif tab_variable == 2 %}
+
+	<p style = "padding-top : 4%;">
+	Click to <a href = "{{url_for('students.add_punishment', admission_no = student.admission_no)}}" class = "btn btn-primary">add record</a>
+	</p>
+
+	<table class = "table table-hover table-striped table-responsive">
+		<caption><h3>history</h3></caption>
+		<thead class = "thead-dark">
+			<tr>
+				<th>record ID</th>
+				<th>date</th>
+				<th>offense</th>
+				<th>punishment</th>
+				<th>overseer</th>
+				<th>start time</th>
+				<th>end time</th>
+
+			</tr>
+		</thead>
+		<tbody>
+			{% for punish in punishments %}
+			<tr>
+				<td>{{punish.punishment_id}}</td>
+				<td>{{punish.date}}</td>
+				<td>{{punish.offence}}</td>
+				<td>{{punish.punishment}}</td>
+				<td>{{punish.overseer}}</td>
+				<td>{{punish.start_time}}</td>
+				<td>{{punish.end_time}}</td>
+
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	{% elif tab_variable == 3 %}
+
+	{% elif tab_variable == 4 %}
+
+	{% elif tab_variable == 5 %}
+
+	{% elif tab_variable == 6 %}
+	<p style = "margin-top:3%;" >
+	<a href = "{{url_for('sanatorium.health_login')}}" class = "btn btn-primary">
+		New Student Diagnosis Log In
+	</a>
+	<a style = "margin-left:30%;" href = "{{url_for('sanatorium.new_medical_record', adm_no = student.admission_no)}}" class = "btn btn-primary">
+		Enter New Record
+	</a>
+	</p>
+	<table class = "table table-hover table-responsive table-striped">
+		<caption><h3>sanatorium health records</h3></caption>
+		<thead class = "thead-dark">
+			<tr>
+				<th>record ID</th>
+				<th>date</th>
+				<th>nurse</th>
+			</tr>
+			<tbody>
+				{% for record in records %}
+				<tr>
+					<td>{{record.record_id}}</td>
+					<td>
+					{{moment(record.date_created).format('LL')}}
+					</td>
+					<td>{{record.first_name}} {{record.middle_name}} {{record.last_name}}</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</thead>
+	</table>
+
+	{% endif %}
+</div>
+{% endblock page_content %}

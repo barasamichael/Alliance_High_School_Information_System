@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}
+    {{super()}}
+    register author
+{% endblock title%}
+
+{% block page_content %}
+<div class="page-header">
+        <h1>register author</h1>
+</div>
+<div class = "container">
+        {{ wtf.quick_form(form) }}
+</div>
+<div>
+<hr>
+<p>
+        <a href = "{{url_for('library.view_all_authors')}}" class = "btn btn-primary">
+                view all authors
+        </a>
+</p>
+</div>
+{% endblock page_content %}

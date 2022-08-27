@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}
+    {{super()}}
+    update event profile image
+    {% endblock title%}
+
+{% block page_content %}
+<div class="page-header">
+        <h1>update event profile image</h1>
+</div>
+<div class = "container">
+        {{ wtf.quick_form(form) }}
+</div>
+{% endblock page_content %}

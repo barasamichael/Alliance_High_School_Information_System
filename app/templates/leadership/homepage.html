@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}
+    {{super()}}
+    Student Leadership
+{% endblock title%}
+
+{% block page_content %}
+<div class="page-header">
+	<h3 class = "text-info">Student Leadership</h3>
+	<img class = "img-rounded" style = "width : 100%; height : auto;" src = "{{url_for('static', filename = 'leadership/leadership.jpeg')}}">
+</div>
+
+<div>
+	<p>                                                                                       Prefects at the school are usually form 4 students who have shown outstanding lead
+ership abilities at the house level. Most of them are chosen from the house committees. During the first term of the academic year, they are appointed to be prefects by the principal after being nominated and vetted by the house masters.                                         </p>
+        <p>
+The prefects are key to the running of the school. It is they who see that the school rout
+ine and school rules are adhered to. They have the authority to punish culprits via the prefect's punishment department. Punishments include washing corridors and rooms, slashing fields and in some extreme cases, working in the school farm or uprooting tree stumps.             </p>
+	<img class = "img-rounded" style = "width : 100%; height : auto;" src = "{{url_for('static', filename = 'leadership/prefects.jpeg')}}">
+
+	<p>                                                                               A total of about 100 prefects are chosen each year and among the 100, 28 of the most outstanding prefects are given top honors in becoming <span class = "text-primary">Senior Captains</span>. These Captains are allocated various major departments in the school. The school's departments include: <span class = "text-primary">Dining Hall, Entertainment, Games, Compound, Library, Chapel, IT and Links, Medical, Protocol, Utilities, Sponsorship</span>, and <span class = "text-primary">Academic</span>.                                        Each department has its department members which vary with the demands of the department. Each house similarly produces a House Captain to be assisted by his Dorm Prefects.                </p>                                                                                      <img class = "img-rounded" style = 'width : 100%; height : auto;' src = "{{url_for('static', filename = 'prefects_homeimage.jpeg')}}">                                              <p>                                                                               The top five captains are referred to as <span class = "text-primary">the Pentagon</span>. They are <span class = "text-primary">the Governor General, the President, the Dining Hall Captain, the Chief</span>, and <span class = "text-primary">the Guru</span>. The prefects' body is given a name each year, e.g. <span class = "">Martinets (2014), Autocrats (2015), Acculturates (2016), Despotians (2017), Relictans (2018), Nomandians(2019), Luminaries(2020/21)</span> and is governed by the <span class = "text-primary">The Governor General</span> and <span class = "text-primary">The President</span>.                                      </p>	
+</div>
+{% endblock page_content %}

@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}
+    {{super()}}
+    list of teachers
+{% endblock title%}
+
+{% block page_content %}
+<div class="page-header">
+	<h1>list of teachers</h1>
+</div>
+<div class = "container">
+	<table class = "table table-hover table-responsive table-striped">
+		<thead class = "thead-dark">
+			<tr>
+				<th>TSC number</th>
+				<th>Names</th>
+				<th>Gender</th>
+				<th>Date Of Birth</th>
+				<th>National ID number</th>
+				<th>Phone Number</th>
+				<th>Email Address</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for teacher in teachers %}
+			<tr>
+				<td>{{teacher.TSC_no}}</td>
+				<td>
+					<a href = "{{url_for('departments.teacher_profile', teacher_id = teacher.teacher_id)}}">
+					{{teacher.first_name}} {{teacher.middle_name}} {{teacher.last_name}}
+					</a>
+				</td>
+				<td>{{teacher.gender}}</td>
+				<td>{{moment(teacher.date_of_birth).format('LL')}}</td>
+				<td>{{teacher.national_id_no}}</td>
+				<td>{{teacher.phone_no}}</td>
+				<td>{{teacher.email_address}}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	<div class = "pagination">
+		{{macros.pagination_widget(pagination, 'departments.view_teachers')}}
+	</div>
+	<p>
+        <a class="btn btn-primary" href="{{url_for('departments.register_department')}}">
+                Register New Department
+        </a>
+	<a style = "margin-left:50%;"class="btn btn-primary" href="{{url_for('departments.register_teacher')}}">
+		Register New Teacher
+	</a>
+        </p>
+</div>
+{% endblock page_content %}

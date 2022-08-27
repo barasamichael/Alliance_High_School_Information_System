@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}
+    {{super()}}
+    sanatorium homepage
+{% endblock title%}
+
+{% block page_content %}
+<div class="page-header">
+	<h3>Health Care</h3>
+</div>
+<div class = "container">
+	<img class = "img-responsive img-rounded" src = "{{url_for('static', filename = 'health_care.jpeg')}}" style = "width : 100%; height : auto;">
+
+	<p style = "padding-top:6%;">
+	The Alliance High School is a center of quality health care. Endowed with a sanatorium and a recently built Level 5 ward, the school aims at ensuring the health of students, staff and residents within the school is catered for.
+	</p>
+	<p>
+	The sanatorium is manned by the school nurse with their assistants if needed. The duties of the nurse include the following but are not limited to:
+	<ul>
+		<li>Attending to patients</li>
+		<li>Making prescriptions for patients</li>
+		<li>Authorizing and supervising students going to hospital</li>
+		<li>Issuing exemption cheats</li>
+		<li>Restocking the sanatorium medical stock</li>
+		<li>Reporting on the health condition of the school population</li>
+		<li>Carrying out house inspections and compiling reports</li>
+		<li>Following up on students with doctor appointments</li>
+		<li>Following up on in-patients</li>
+		<li>Ensuring discipline is maintained in the sanatorium</li>
+	</ul>
+	The school has a medical department headed by the Medical Captain. Other members include medical prefects and the medical committee. The medical committee comprises of the following:
+	<table class = "table table-responsive table-hover table-striped">
+		<caption><h3>Alliance High School Medical Committee</h3></caption>
+		<thead class = "thead-dark">
+			<tr>
+				<th>Names</th>
+				<th>Position</th>
+			</tr>
+		</thead>
+		<tbody></tbody>
+	</table>
+	The school has a strong policy towards storage of medicine. All medicinal substances upon reporting to school are to be taken to the sanatorium. Having any medicine in the house area is a punishable offense. 
+	</p>
+	<p>
+	All patients headed to the hospital use the school minibus. The school's preferred hospitals include:
+	<ul>
+		<li>St. Teresa Kikuyu Nursing and Maternity Home</li>
+		<li>PCEA Kikuyu Hospital</li>
+	</ul>
+	<a class = "btn btn-primary" href = "{{url_for('sanatorium.register_nurse')}}">
+		register nurse
+	</a>
+	<a class = "btn btn-primary" href = "#" style = "margin-left : 50%;">
+		Log In
+	</a>
+	</p>
+</div>
+{% endblock page_content %}

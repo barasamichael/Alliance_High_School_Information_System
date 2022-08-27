@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}
+    {{super()}}
+    list of nurses
+{% endblock title%}
+
+{% block page_content %}
+<div class="page-header">
+	<h1>list of school nurses</h1>
+</div>
+<div class = "container">
+	<table class = "table table-hover table-responsive table-striped">
+		<thead class = "thead-dark">
+			<tr>
+				<th>National ID number</th>
+				<th>Names</th>
+				<th>Gender</th>
+				<th>Date Of Birth</th>
+				<th>Phone Number</th>
+				<th>Email Address</th>
+				<th>Status</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for nurse in nurses %}
+			<tr>
+				<td>{{nurse.national_id_no}}</td>
+				<td><a href = "{{url_for('sanatorium.nurse_profile', nurse_id = nurse.nurse_id)}}">{{nurse.first_name}} {{nurse.middle_name}} {{nurse.last_name}}</td>
+				<td>{{nurse.gender}}</td>
+				<td>{{moment(nurse.date_of_birth).format('LL')}}</td>
+				<td>{{nurse.phone_no}}</td>
+				<td>{{nurse.email_address}}</td>
+				<td>{{nurse.status}}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	<p>
+        <a class="btn btn-primary" href="{{url_for('sanatorium.register_nurse')}}">
+                Register New Nurse
+        </a>
+	<a style = "margin-left:50%;"class="btn btn-primary" href="#">
+		Log In
+	</a>
+        </p>
+</div>
+{% endblock page_content %}

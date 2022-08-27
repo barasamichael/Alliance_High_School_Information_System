@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}
+    {{super()}}
+    Invalid Image
+{% endblock title%}
+
+{% block page_content %}
+<div class="page-header">
+	<h1>Invalid Image</h1>
+	<p>The selected file if of a corrupted or an unsupported image format. Select an alternative one.</p>
+	<p><b>HINT : </b>.png, .jpg and .webp image files not supported.</p>
+</div>
+{% endblock page_content %}

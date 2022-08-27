@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}
+    {{super()}}
+    register book
+{% endblock title%}
+
+{% block page_content %}
+<div class="page-header">
+        <h1>register book</h1>
+</div>
+<div class = "container">
+        {{ wtf.quick_form(form) }}
+</div>
+<div>
+<hr>
+<p>
+        <a href = "{{url_for('library.view_all_books')}}" class = "btn btn-primary">
+                view all books
+        </a>
+</p>
+</div>
+{% endblock page_content %}
